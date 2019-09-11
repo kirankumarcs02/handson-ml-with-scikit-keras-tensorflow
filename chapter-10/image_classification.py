@@ -46,6 +46,6 @@ tf.random.set_seed(42)
 
 print('model.layers', model.layers)
 print('model.summary() = ', model.summary())
-keras.utils.plot_model(model, "my_mnist_model.png", show_shapes=True)
+keras.utils.plot_model(model, "images/my_mnist_model.png", show_shapes=True)
 
 ################################################################################################
