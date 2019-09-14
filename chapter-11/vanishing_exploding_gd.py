@@ -29,3 +29,22 @@ plt.axis([-5, 5, -0.2, 1.2])
 
 save_fig("sigmoid_saturation_plot")
 plt.show()
+
+#####################################################################################
+
+
+def leaky_relu(z, alpha=0.01):
+    return np.maximum(alpha*z, z)
+
+
+plt.plot(z, leaky_relu(z, 0.05), "b-", linewidth=2)
+plt.plot([-5, 5], [0, 0], 'k-')
+plt.plot([0, 0], [-0.5, 4.2], 'k-')
+plt.grid(True)
+props = dict(facecolor='black', shrink=0.1)
+plt.annotate('Leak', xytext=(-3.5, 0.5), xy=(-5, -0.2), arrowprops=props, fontsize=14, ha="center")
+plt.title("Leaky ReLU activation function", fontsize=14)
+plt.axis([-5, 5, -0.5, 4.2])
+
+save_fig("leaky_relu_plot")
+plt.show()
