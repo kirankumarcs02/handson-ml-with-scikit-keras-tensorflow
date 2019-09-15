@@ -48,3 +48,20 @@ plt.axis([-5, 5, -0.5, 4.2])
 
 save_fig("leaky_relu_plot")
 plt.show()
+
+############################################################################################
+
+
+def elu(z, alpha=1):
+    return np.where(z < 0, alpha * (np.exp(z) - 1), z)
+
+plt.plot(z, elu(z), "b-", linewidth=2)
+plt.plot([-5, 5], [0, 0], 'k-')
+plt.plot([-5, 5], [-1, -1], 'k--')
+plt.plot([0, 0], [-2.2, 3.2], 'k-')
+plt.grid(True)
+plt.title(r"ELU activation function ($\alpha=1$)", fontsize=14)
+plt.axis([-5, 5, -2.2, 3.2])
+
+save_fig("elu_plot")
+plt.show()
