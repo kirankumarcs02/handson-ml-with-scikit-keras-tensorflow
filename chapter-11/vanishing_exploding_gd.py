@@ -65,3 +65,29 @@ plt.axis([-5, 5, -2.2, 3.2])
 
 save_fig("elu_plot")
 plt.show()
+
+######################################################################
+
+
+from scipy.special import erfc
+
+# alpha and scale to self normalize with mean 0 and standard deviation 1
+# (see equation 14 in the paper):
+alpha_0_1 = -np.sqrt(2 / np.pi) / (erfc(1/np.sqrt(2)) * np.exp(1/2) - 1)
+scale_0_1 = (1 - erfc(1 / np.sqrt(2)) * np.sqrt(np.e)) * np.sqrt(2 * np.pi) * (2 * erfc(np.sqrt(2))*np.e**2 + np.pi*erfc(1/np.sqrt(2))**2*np.e - 2*(2+np.pi)*erfc(1/np.sqrt(2))*np.sqrt(np.e)+np.pi+2)**(-1/2)
+
+
+def selu(z, scale=scale_0_1, alpha=alpha_0_1):
+    return scale * elu(z, alpha)
+
+
+plt.plot(z, selu(z), "b-", linewidth=2)
+plt.plot([-5, 5], [0, 0], 'k-')
+plt.plot([-5, 5], [-1.758, -1.758], 'k--')
+plt.plot([0, 0], [-2.2, 3.2], 'k-')
+plt.grid(True)
+plt.title(r"SELU activation function", fontsize=14)
+plt.axis([-5, 5, -2.2, 3.2])
+
+save_fig("selu_plot")
+plt.show()
